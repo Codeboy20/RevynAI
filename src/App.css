@@ -9,7 +9,7 @@
 body {
   background-color: #000;
   color: #fff;
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -38,9 +38,11 @@ body {
   overflow: hidden;
 }
 
-/* 🔧 Fix editor visibility */
-.editor-container .monaco-editor {
-  min-height: 250px;
+/* Monaco fix */
+.monaco-editor,
+.monaco-editor .overflow-guard {
+  min-height: 300px !important;
+  height: 100% !important;
 }
 
 .select-center {
@@ -89,21 +91,22 @@ body {
 
 .response-scroll {
   flex: 1;
-  overflow: auto;
+  overflow-y: auto;
   padding: 20px;
   line-height: 1.6;
   font-size: 15px;
-  max-height: 100%;
 }
 
+/* ✅ Centered loader fix */
 .loader-center {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
   height: 100%;
+  width: 100%;
 }
 
-/* Scrollbar */
 .response-scroll::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -116,7 +119,6 @@ body {
   background: #18181b;
 }
 
-/* Markdown Styling */
 p {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -145,7 +147,6 @@ pre {
   font-size: 14px;
 }
 
-/* Responsive Fixes */
 @media (max-width: 1024px) {
   .main-container {
     flex-direction: column;
@@ -155,12 +156,9 @@ pre {
   .editor-container,
   .response-container {
     width: 100%;
+    min-height: 350px;
     height: auto;
-    min-height: 300px;
-  }
-
-  .editor-container .monaco-editor {
-    min-height: 250px;
+    overflow: visible;
   }
 
   .review-btn-wrapper {
@@ -182,12 +180,9 @@ pre {
 
   .editor-container,
   .response-container {
-    min-height: 300px;
+    min-height: 350px;
     height: auto;
-  }
-
-  .editor-container .monaco-editor {
-    min-height: 250px;
+    overflow: visible;
   }
 
   .review-btn-wrapper {
@@ -209,18 +204,6 @@ pre {
     flex-direction: column;
     gap: 10px;
   }
-
-  @media (max-width: 1024px) {
-  .response-container {
-    max-height: 400px;
-  }
-}
-
-@media (max-width: 600px) {
-  .response-container {
-    max-height: 350px;
-  }
-}
 }
 
 .rating-tag {

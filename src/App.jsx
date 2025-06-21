@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-// import dotenv from 'dotenv';
-// dotenv.config();
 import Navbar from './Components/Navbar';
 import Editor from '@monaco-editor/react';
 import Select from 'react-select';
@@ -9,10 +7,9 @@ import { GoogleGenAI } from '@google/genai';
 import Markdown from 'react-markdown';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
-// Function to add icons & formatting
+// Beautify the AI response
 function transformResponse(text) {
   if (!text) return '';
-
   return text
     .replace(/(Bug:)/gi, '❌ **Bug:**')
     .replace(/(Fix:)/gi, '✅ **Fix:**')
@@ -20,7 +17,7 @@ function transformResponse(text) {
     .replace(/(Corrected:)/gi, '✅ **Corrected:**');
 }
 
-// Function to extract quality rating (Good, Bad, etc.)
+// Extract rating from the response
 function extractRating(text) {
   const lower = text.toLowerCase();
   if (lower.includes("bad")) return "bad";
@@ -59,8 +56,7 @@ const App = () => {
   const [response, setResponse] = useState('');
   const [rating, setRating] = useState(null);
 
-  const ai = new GoogleGenAI({apiKey: import.meta.env.VITE_GEMINI_KEY});
-
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_KEY });
 
   const customStyles = {
     control: (provided) => ({
@@ -111,7 +107,7 @@ const App = () => {
       \n\n
       Rate the code quality as "Good", "Normal", or "Bad" at the end of your response.
       Use markdown formatting for emphasis and clarity.
-      \n\nRespond only with the review, and additional text like informations about possible optimizations and time complexity and space also.
+      \n\nRespond only with the review, and additional text like optimizations, time complexity, and space.
       `
     });
     setResponse(res.text);
@@ -133,11 +129,15 @@ const App = () => {
             />
           </div>
           <Editor
-            height="300px"
+            key={selectedOption.value}
+            height="100%"
             theme="vs-dark"
             language={selectedOption.value}
             value={code}
             onChange={(e) => setCode(e)}
+            onMount={(editor) => {
+              setTimeout(() => editor.layout(), 0);
+            }}
           />
           <div className="review-btn-wrapper">
             <button className="btnNormal" onClick={reviewCode}>Review</button>
