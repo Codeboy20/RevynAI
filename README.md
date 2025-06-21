@@ -32,26 +32,40 @@ RevynAI is an AI-powered code reviewer that uses Google Gemini to provide intell
 
 ## 📥 Installation Guide
 
-```bash
+
 # 1. Clone the repository
+```
 git clone https://github.com/yourusername/revyn-ai.git
 cd revyn-ai
+```
 
 # 2. Install all dependencies
+```
 npm install
+```
 
 # 3. Add your API key in .env file
+```
 echo VITE_GEMINI_KEY=your_google_gemini_api_key > .env
+```
 
 # 4. Start local development server
+```
 npm run dev
+```
 
 
-🧑 Author
-Jaydeep Singh Rathore
-👨‍💻 Mern stack devloper | AI Explorer
-📧 jaydeepsinghrathore904@example.com
 
+## 🧑 Author
 
-📝 License
-This project is licensed under the MIT License.
+**Jaydeep Singh Rathore**  
+👨‍💻 MERN Stack Developer | AI Explorer  
+📧 Email: [jaydeepsinghrathore904@example.com](mailto:jaydeepsinghrathore904@example.com)
+
+---
+
+## 📝 License
+
+This project is licensed under the **MIT License**.  
+See the [LICENSE](./LICENSE) file for details.
+
