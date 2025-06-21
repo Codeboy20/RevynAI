@@ -133,7 +133,7 @@ const App = () => {
             />
           </div>
           <Editor
-            height="100%"
+            height="300px"
             theme="vs-dark"
             language={selectedOption.value}
             value={code}

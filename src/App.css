@@ -38,6 +38,11 @@ body {
   overflow: hidden;
 }
 
+/* 🔧 Fix editor visibility */
+.editor-container .monaco-editor {
+  min-height: 250px;
+}
+
 .select-center {
   display: flex;
   justify-content: center;
@@ -88,9 +93,9 @@ body {
   padding: 20px;
   line-height: 1.6;
   font-size: 15px;
+  max-height: 100%;
 }
 
-/* ✅ Centered loader fix */
 .loader-center {
   display: flex;
   justify-content: center;
@@ -140,7 +145,7 @@ pre {
   font-size: 14px;
 }
 
-/* Responsive */
+/* Responsive Fixes */
 @media (max-width: 1024px) {
   .main-container {
     flex-direction: column;
@@ -150,12 +155,23 @@ pre {
   .editor-container,
   .response-container {
     width: 100%;
-    height: 60vh;
+    height: auto;
+    min-height: 300px;
+  }
+
+  .editor-container .monaco-editor {
+    min-height: 250px;
   }
 
   .review-btn-wrapper {
-    bottom: 10px;
-    right: 10px;
+    position: static;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .btnNormal {
+    width: auto;
+    padding: 10px 20px;
   }
 }
 
@@ -164,16 +180,48 @@ pre {
     padding: 10px;
   }
 
+  .editor-container,
+  .response-container {
+    min-height: 300px;
+    height: auto;
+  }
+
+  .editor-container .monaco-editor {
+    min-height: 250px;
+  }
+
+  .review-btn-wrapper {
+    position: static;
+    margin-top: 10px;
+    text-align: center;
+  }
+
   .btnNormal {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
   }
 
   .response-title {
     font-size: 16px;
   }
+
+  .select-center {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (max-width: 1024px) {
+  .response-container {
+    max-height: 400px;
+  }
 }
 
+@media (max-width: 600px) {
+  .response-container {
+    max-height: 350px;
+  }
+}
+}
 
 .rating-tag {
   text-align: center;
